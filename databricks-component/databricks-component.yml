@@ -1,0 +1,44 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: execute_databricks_notebook
+display_name: Execute Databricks Notebook
+description: Execute a notebook as a Spark job in databricks
+
+code: ./src
+
+environment: azureml:databricks:1
+
+command: >-
+  python databricks_control.py
+  --databricks-host ${{inputs.databricks_host}}
+  --notebook_path ${{inputs.notebook_path}}
+  --keyvault-url ${{inputs.kv_url}}
+  --keyvault-secret-name ${{inputs.kv_secret_name}}
+  --num-workers ${{inputs.num_workers}}
+  --node-type-id ${{inputs.node_type_id}}
+  --spark-version ${{inputs.spark_version}}
+
+inputs:
+  databricks_host:
+    type: string
+  notebook_path: 
+    type: string
+  kv_url:
+    type: string
+  kv_secret_name:
+    type: string
+  num_workers:
+    type: integer
+  node_type_id:
+    type: string
+  spark_version: 
+    type: string
+
+outputs:
+  output_path:
+    type: uri_folder
+    mode: direct
+
+
+    

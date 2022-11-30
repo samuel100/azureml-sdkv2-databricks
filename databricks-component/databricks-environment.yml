@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+
+name: databricks
+build:
+    path: ./docker-context
+

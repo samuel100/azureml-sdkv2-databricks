@@ -1,0 +1,19 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+type: command
+
+name: train
+display_name: Train model
+
+code: ./src
+
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:32
+
+command: >-
+  python train.py
+  --input ${{inputs.data}}
+
+inputs:
+  data:
+    type: uri_folder
+
+    
